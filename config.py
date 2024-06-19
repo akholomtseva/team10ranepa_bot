@@ -7,12 +7,12 @@
 import os
 from dotenv import load_dotenv
 
-#включить для запуска на сервере
-#load_dotenv()
+load_dotenv()
 
-#TOKEN: str = os.getenv('TOKEN')
+TOKEN: str = os.getenv('TOKEN')
+CLIENT_ID: str = os.getenv('CLIENT_ID')
+URL: str = os.getenv('TOKEN_URL')
+TOKEN_URL = f"{URL}{CLIENT_ID}" 
 
-#включить для отладки в replit
-TOKEN: str = os.environ['TOKEN']
 
 

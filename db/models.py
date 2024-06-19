@@ -4,26 +4,31 @@
 __all__ = [
     'User',
     'Base',
+    'YandexDiskFolder'
 ]
 
-import datetime
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import Column, Integer, String, DATE
 
 
 # Декларативная модель базы данных
 # https://metanit.com/python/database/3.2.php
+
 class Base(DeclarativeBase):
     pass
 
 
 class User(Base):
-    """модель пользователя tg для регистрации"""
+    __tablename__ = 'users'
+    id = Column(Integer, index=True, primary_key=True)
+    user_teacher_id = Column(Integer, nullable=True)
+    token = Column(String, nullable=True)
+    name = Column(String)
 
-    __tablename__ = "user_table"
 
-    user_id = Column(Integer, nullable=False, unique=True, primary_key=True)
-
-    username = Column(String, unique=False, nullable=True)  # Вместо String можно использовать VARCHAR()
-
-    reg_date = Column(DATE, default=datetime.datetime.now())
+class YandexDiskFolder(Base):
+    __tablename__ = 'yandex_disk_folders'
+    id = Column(Integer, index=True, primary_key=True)
+    user_teacher_id = Column(Integer)
+    name = Column(String)
+    date = Column(String, nullable=True)
